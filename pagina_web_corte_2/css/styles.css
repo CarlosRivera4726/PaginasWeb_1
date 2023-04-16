@@ -12,60 +12,88 @@ h1{
 	text-align:center;
 }
 
-header {
-	height: 160px;
-	background-image: url(images/header.jpg);
+header{
+	margin-bottom: 20px;
 }
 
-
-nav {
-  background-color: wheat;
-  height: 50px;
+.container-nav {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
-.welcome{
+
+.container-nav nav {
+	float: right;
+	background-color: wheat;
+	height: 60px;
+	width: 100%;
+}
+
+.container-nav ul {
+	margin: 0;
+	padding: 0;
+	float: right;
+}
+
+.container-nav li {
+	display: inline-block;
+	margin-left: 20px;
+	margin-right: 10px;
+}
+.container-nav img.welcome {
 	width: 100%;
 	max-width: 150px;
+	order: 1;
+	margin-right: 24rem;
+	margin-left: 0.1rem;
+}
+.container-nav li input[type="text"] {
+	width: 200px;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+.container-nav li button[type="submit"] {
+	padding: 10px;
+	border: none;
+	background-color: #008CBA;
+	color: white;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-right: 10rem;
 }
 
 ul {
-	
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
 }
 
 li {
-  margin: 0 10px;
+	margin: 0 10px;
 }
 
-a {
-  color: #fff;
-  text-decoration: none;
-  font-size: 24px;
-}
 
 ul li a{
-  	color: #a3a3a3;
+	color: #a3a3a3;
+	font-size: 20px;
+	text-decoration: none;
 }
 
 ul li a:hover{
-  	color: #333;
-}
-
-.welcome{
-	font-family:Arial, Helvetica, sans-serif;
-	font-size:25px;
+	color: #333;
 }
 
 .icon-home {
 	display: inline-block;
 	width: 24px;
 	height: 24px;
-  	background-image :url(../imgs/icons_navbar/home.png);
+	background-image :url(../imgs/icons_navbar/home.png);
 	vertical-align:middle;
 	margin-bottom: 5px;
 }
@@ -74,27 +102,27 @@ ul li a:hover{
 	display: inline-block;
 	width: 24px;
 	height: 24px;
-  	background-image: url(../imgs/icons_navbar/prices.png);
+	background-image: url(../imgs/icons_navbar/prices.png);
 	vertical-align:middle;
 	margin-bottom: 5px;
 }
 
 .icon-user {
-  	display: inline-block;
+	display: inline-block;
 	width: 24px;
 	height: 24px;
-  	background-image: url(../imgs/icons_navbar/login.png);
+	background-image: url(../imgs/icons_navbar/login.png);
 	vertical-align:middle;
 	margin-bottom: 5px;
 }
 
 .icon-register {
 	display: inline-block;
-  	width: 24px;
-  	height: 24px;
+	width: 24px;
+	height: 24px;
 	background-image: url(../imgs/icons_navbar/add_user.png);
-  	vertical-align:middle;
-  	margin-bottom: 5px;
+	vertical-align:middle;
+	margin-bottom: 5px;
 }
 
 .container{
@@ -102,5 +130,5 @@ ul li a:hover{
 }
 
 .form-separator {
-    margin-bottom: 1rem; /* ajusta la cantidad de margen según tu preferencia */
-  }
+    margin-bottom: 4rem; 
+}
