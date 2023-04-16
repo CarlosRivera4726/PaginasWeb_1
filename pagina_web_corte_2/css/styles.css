@@ -1,0 +1,106 @@
+
+body{
+    background-color: #a3a3a3;
+	
+}
+
+header, section, footer, aside, nav, article, figure, figcaption {
+	display: block;
+}
+
+h1{
+	text-align:center;
+}
+
+header {
+	height: 160px;
+	background-image: url(images/header.jpg);
+}
+
+
+nav {
+  background-color: wheat;
+  height: 50px;
+}
+.welcome{
+	width: 100%;
+	max-width: 150px;
+}
+
+ul {
+	
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+li {
+  margin: 0 10px;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 24px;
+}
+
+ul li a{
+  	color: #a3a3a3;
+}
+
+ul li a:hover{
+  	color: #333;
+}
+
+.welcome{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:25px;
+}
+
+.icon-home {
+	display: inline-block;
+	width: 24px;
+	height: 24px;
+  	background-image :url(../imgs/icons_navbar/home.png);
+	vertical-align:middle;
+	margin-bottom: 5px;
+}
+
+.icon-price {
+	display: inline-block;
+	width: 24px;
+	height: 24px;
+  	background-image: url(../imgs/icons_navbar/prices.png);
+	vertical-align:middle;
+	margin-bottom: 5px;
+}
+
+.icon-user {
+  	display: inline-block;
+	width: 24px;
+	height: 24px;
+  	background-image: url(../imgs/icons_navbar/login.png);
+	vertical-align:middle;
+	margin-bottom: 5px;
+}
+
+.icon-register {
+	display: inline-block;
+  	width: 24px;
+  	height: 24px;
+	background-image: url(../imgs/icons_navbar/add_user.png);
+  	vertical-align:middle;
+  	margin-bottom: 5px;
+}
+
+.container{
+	width: 500px;
+}
+
+.form-separator {
+    margin-bottom: 1rem; /* ajusta la cantidad de margen según tu preferencia */
+  }
