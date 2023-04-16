@@ -31,7 +31,7 @@ if(isset($_POST['validacion'])){
 		$email = $_POST['email'];
 		$genero = $_POST['genero'];
 		$pass = password_hash($password, PASSWORD_BCRYPT);
-
+		// TODO: Limpiar código
 		$connection = new connection();
 		$query = "INSERT INTO USUARIOS (NOMBRE, APELLIDO, EMAIL, GENERO, CLAVE) VALUES (:nombre, :apellido, :email, :genero, :clave)";
 		$stmt = $connection->prepare($query);
