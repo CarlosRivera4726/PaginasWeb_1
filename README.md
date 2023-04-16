@@ -24,7 +24,7 @@ Al momento de este commit se tiene el registro en la base de datos de los usuari
     SELECT * FROM USUARIOS;
 ~~~ 
 ### PHP 🐘
-~~~
+~~~PHP
     <?php
 	class User {
 		private $nombre;
