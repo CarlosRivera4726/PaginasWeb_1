@@ -1,10 +1,8 @@
 <?php 
   include "estilos.html";
+  include "funciones.php";
   
-  $url_actual = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-  $delimitador = 'pagina_web_corte_2/';
-  $posicion = strpos($url_actual, $delimitador);
-  $url_limpia = substr($url_actual, 0, $posicion + strlen($delimitador) - 1);
+  $url_limpia = obtenerUrlLimpia();
 
   $navBar = '
   	<header>
@@ -24,10 +22,19 @@
 
 				<li><a href="'.$url_limpia.'/index.php"><i class="icon-home"></i> Inicio</a></li>
 				<li><a href="'.$url_limpia.'/casas.php"><i class="icon-price"></i> Comprar Casas</a></li>
-				<li><a href="'.$url_limpia.'/register.php"><i class="icon-register"></i> Registrarse</a></li>
-				<li><a href="'.$url_limpia.'/login.php"><i class="icon-user"></i> Ingresar</a></li>
-			
-			</ul>
+				';
+
+  // Si el usuario ha iniciado sesión, muestra "Cerrar sesión" en lugar de "Ingresar" y "Registrarse"
+  if (session_status() == PHP_SESSION_NONE) { session_start(); }
+
+  if(isset($_SESSION['email'])){
+      $navBar .= '<li><a href="'.$url_limpia.'/logout.php"><i class="icon-logout"></i> Cerrar sesión</a></li>';
+  }else{
+      $navBar .= '<li><a href="'.$url_limpia.'/register.php"><i class="icon-register"></i> Registrarse</a></li>
+				<li><a href="'.$url_limpia.'/login.php"><i class="icon-user"></i> Ingresar</a></li>';
+  }
+
+  $navBar .= '
 		</nav>
 	
 	  </div>
