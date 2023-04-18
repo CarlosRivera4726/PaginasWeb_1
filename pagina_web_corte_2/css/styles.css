@@ -29,10 +29,11 @@ header{
 }
 
 .container-nav ul {
-	margin: 0;
-	padding: 0;
-	float: right;
-}
+	display: flex;
+	align-items: center;
+	width: 100%;
+	justify-content: space-around;
+	}
 
 .container-nav li {
 	display: inline-block;
