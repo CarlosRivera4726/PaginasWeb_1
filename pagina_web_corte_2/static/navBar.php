@@ -19,9 +19,9 @@
 						<button type="submit">Buscar</button>
 					</li>
 				</form>
-
-				<li><a href="'.$url_limpia.'/index.php"><i class="icon-home"></i> Inicio</a></li>
-				<li><a href="'.$url_limpia.'/casas.php"><i class="icon-price"></i> Comprar Casas</a></li>
+				<div class="container-li">
+					<li><a href="'.$url_limpia.'/index.php"><i class="icon-home"></i> Inicio</a></li>
+					<li><a href="'.$url_limpia.'/casas.php"><i class="icon-price"></i> Comprar Casas</a></li>
 				';
 
   // Si el usuario ha iniciado sesión, muestra "Cerrar sesión" en lugar de "Ingresar" y "Registrarse"
@@ -35,6 +35,7 @@
   }
 
   $navBar .= '
+  		</div>
 		</nav>
 	
 	  </div>

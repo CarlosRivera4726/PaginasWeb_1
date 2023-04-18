@@ -9,6 +9,7 @@
         public function __construct($connection){ $this->connection = $connection; }
 
         public function guardar($usuario = User) {
+
             $query = "INSERT INTO USUARIOS (NOMBRE, APELLIDO, EMAIL, GENERO, CLAVE) VALUES (:nombre, :apellido, :email, :genero, :clave)";
             $stmt = $this->connection->prepare($query);
             $stmt->bindParam(':nombre', $usuario->getNombre());
@@ -23,6 +24,11 @@
             }else{
                 return "No se ha podido guardar";
             }
+        }
+
+
+        public function login($id, $password){
+            $query = "SELECT ID, NOMBRE, APELLIDO, EMAIL, GENERO FROM USUARIOS WHERE ID=:ID";
         }
     }
 

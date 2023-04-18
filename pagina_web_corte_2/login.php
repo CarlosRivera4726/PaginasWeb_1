@@ -42,7 +42,7 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="password">Contraseña:</label>
-                        <input class="form-control" type="password" name="password" required><br>
+                        <input class="form-control" type="password" name="password" placeholder="*********" required><br>
                     </div>
                     <div class="form-group mb-3">
                         <input class="btn btn-primary" type="submit" value="Enviar" name="validacion">
