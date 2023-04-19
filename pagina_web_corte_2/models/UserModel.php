@@ -7,6 +7,7 @@
 		private $genero;
 		private $password;
 		private $email;
+		private $es_vendedor;
 		
 		public function __construct($nombre, $apellido, $email, $password, $genero) {
 			$this->nombre = $nombre;
@@ -14,6 +15,7 @@
 			$this->email = $email;
 			$this->password = $password;
 			$this->genero = $genero;
+			$this->es_vendedor = false;
 		}
 
 		public function getId(){ return $this->id; }
@@ -39,6 +41,10 @@
 		public function getEmail() { return $this->email; }
 		
 		public function setEmail($email) { $this->email = $email; }
+
+		public function getEsVendedor() { return $this->es_vendedor; }
+		
+		public function setEsVendedor($email) { $this->es_vendedor = $es_vendedor; }
 
 		public function toString() { return $this->nombre . " " . $this->apellido; }
 	}

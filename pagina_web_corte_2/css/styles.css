@@ -20,6 +20,7 @@ header{
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	width: 100%;
 }
 
 .container-nav nav {
@@ -31,9 +32,8 @@ header{
 .container-nav ul {
 	display: flex;
 	align-items: center;
-	width: 100%;
 	justify-content: space-around;
-	}
+}
 
 .container-nav li {
 	display: inline-block;
@@ -64,7 +64,9 @@ header{
 	margin-right: 10rem;
 }
 
-ul {
+
+ul{
+
 	list-style: none;
 	margin: 0;
 	padding: 0;
@@ -73,21 +75,31 @@ ul {
 	align-items: center;
 	height: 100%;
 }
+.container-li{
+	display: flex;
+	
+}
 
-li {
+.container-li li {
 	margin: 0 10px;
 }
 
 
-ul li a{
+.container-li li a{
 	color: #a3a3a3;
-	font-size: 20px;
+	font-size: 13px;
+	text-decoration: none;
+	
+	transition: 1s all;
+}
+
+.container-li li a:hover{
+	color: #333;
+	font-size: 13px;
 	text-decoration: none;
 }
 
-ul li a:hover{
-	color: #333;
-}
+
 
 .icon-home {
 	display: inline-block;
@@ -129,6 +141,15 @@ ul li a:hover{
 	width: 24px;
 	height: 24px;
 	background-image: url(../imgs/icons_navbar/logout.png);
+	vertical-align:middle;
+	margin-bottom: 5px;
+}
+
+.icon-sold{
+	display: inline-block;
+	width: 24px;
+	height: 24px;
+	background-image: url(../imgs/icons_navbar/sold.png);
 	vertical-align:middle;
 	margin-bottom: 5px;
 }
