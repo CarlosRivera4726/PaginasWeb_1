@@ -28,8 +28,36 @@
         }
 
 
-        public function login($id, $password){
-            $query = "SELECT ID, NOMBRE, APELLIDO, EMAIL, GENERO FROM USUARIOS WHERE ID=:ID";
+        public function login($email){
+            try{
+                $query = "SELECT * FROM ".$this->table." WHERE EMAIL=:email";
+                $stmt = $this->connection->prepare($query);
+                $stmt->bindParam(':email', $email);
+                $stmt->execute();
+                /*
+                    $user[0]['APELLIDO'];
+                    $_SESSION['email'] = $user[0]['EMAIL'];
+                    $_SESSION['genero'] = $user[0]['GENERO'];
+                */
+                $resultSet = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                if(count($resultSet) > 0){
+                    $usuario = new User($resultSet[0]['nombre'],
+                                        $resultSet[0]['apellido'],
+                                        $resultSet[0]['email'],
+                                        $resultSet[0]['clave'],
+                                        $resultSet[0]['genero']
+                                    );
+
+                    $usuario->setId($resultSet[0]['id']);
+                    $usuario->setEsVendedor($resultSet[0]['es_vendedor']);
+
+                    return $usuario;
+                } else{
+                    return null;
+                }
+            }catch(Exception $ex){
+                    return "El correo no se encuentra registrado!";
+            }
         }
     }
 

@@ -11,6 +11,10 @@
         public function guardar($usuario = User){
             return $this->userDao->guardar($usuario);
         }
+
+        public function login($email){
+            return $this->userDao->login($email);
+        }
     }
 
 ?>

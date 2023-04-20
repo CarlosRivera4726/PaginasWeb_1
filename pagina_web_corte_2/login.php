@@ -8,28 +8,30 @@
 </head>
 <body>
     <?php 
-        include "database/connection.php";
         include "static/navBar.php";
+        include "controllers/UserController.php";
 
         if(isset($_POST['validacion'])){
             $email = $_POST['email'];
             $password = $_POST['password'];
-            $connection = new connection();
-            $query = "SELECT * FROM USUARIOS WHERE EMAIL=:email";
-            $stmt = $connection->prepare($query);
-            $stmt->bindParam(':email', $email);
-            $stmt->execute();
 
-            $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            if(count($user)>0 && password_verify($password, $user[0]['CLAVE'])){
+            /* llamado a base de datos */
+            $userController = new UserController();
+            $user = $userController->login($email);
+            var_dump($email);
+            var_dump($user);
+            $passwordUser = $user->getPassword();
+
+
+            if(($user != null) && password_verify($password, $passwordUser)){
                 // autenticacion exitosa
                 if(session_status() == PHP_SESSION_NONE){ session_start(); }
-                $_SESSION['nombre'] = $user[0]['NOMBRE'];
-                $_SESSION['apellido'] = $user[0]['APELLIDO'];
-                $_SESSION['email'] = $user[0]['EMAIL'];
-                $_SESSION['genero'] = $user[0]['GENERO'];
+                $_SESSION['nombre'] = $user->getNombre();
+                $_SESSION['apellido'] = $user->getApellido();
+                $_SESSION['email'] = $user->getEmail();
+                $_SESSION['genero'] = $user->getGenero();
                 $url_limpia = obtenerUrlLimpia();
-                header("Location: ".$url_limpia."/casas.php");
+                header("Location: ".$url_limpia."/index.php");
             }
 
         }else{

@@ -9,7 +9,15 @@
 <body>
     <?php 
         include "static/navBar.php";
-		
+
+        if(session_status() == PHP_SESSION_NONE) { session_start(); }
+        
+        if(isset($_SESSION['email'])){
+            echo "Bienvenido(a), " . $_SESSION['nombre'] . " " . $_SESSION['apellido'] . "!";
+        }else{
+            echo "No estás logeado.";
+        }
+
 		$url_actual = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 		echo $url_actual;
     ?>
