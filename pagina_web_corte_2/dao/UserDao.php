@@ -9,9 +9,9 @@
 
         public function __construct($connection){ $this->connection = $connection; }
 
-        public function guardar($usuario = User) {
+        public function guardar($usuario) {
 
-            $query = "INSERT INTO ".$table." (NOMBRE, APELLIDO, EMAIL, GENERO, CLAVE, ES_VENDEDOR) VALUES (:nombre, :apellido, :email, :genero, :clave)";
+            $query = "INSERT INTO ".$this->table." (NOMBRE, APELLIDO, EMAIL, GENERO, CLAVE) VALUES (:nombre, :apellido, :email, :genero, :clave)";
             $stmt = $this->connection->prepare($query);
             $stmt->bindParam(':nombre', $usuario->getNombre());
             $stmt->bindParam(':apellido', $usuario->getApellido());
