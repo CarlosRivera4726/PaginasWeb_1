@@ -41,15 +41,15 @@
                 */
                 $resultSet = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 if(count($resultSet) > 0){
-                    $usuario = new User($resultSet[0]['nombre'],
-                                        $resultSet[0]['apellido'],
-                                        $resultSet[0]['email'],
-                                        $resultSet[0]['clave'],
-                                        $resultSet[0]['genero']
+                    $usuario = new User($resultSet[0]['NOMBRE'],
+                                        $resultSet[0]['APELLIDO'],
+                                        $resultSet[0]['EMAIL'],
+                                        $resultSet[0]['CLAVE'],
+                                        $resultSet[0]['GENERO']
                                     );
 
-                    $usuario->setId($resultSet[0]['id']);
-                    $usuario->setEsVendedor($resultSet[0]['es_vendedor']);
+                    $usuario->setId($resultSet[0]['ID']);
+                    $usuario->setEsVendedor($resultSet[0]['ES_VENDEDOR']);
 
                     return $usuario;
                 } else{

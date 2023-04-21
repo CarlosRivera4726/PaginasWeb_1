@@ -44,7 +44,7 @@
 
 		public function getEsVendedor() { return $this->es_vendedor; }
 		
-		public function setEsVendedor($email) { $this->es_vendedor = $es_vendedor; }
+		public function setEsVendedor($es_vendedor) { $this->es_vendedor = $es_vendedor; }
 
 		public function toString() { return $this->nombre . " " . $this->apellido; }
 	}
