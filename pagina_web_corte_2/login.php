@@ -26,13 +26,15 @@
             if(($user != null) && password_verify($password, $passwordUser)){
                 // autenticacion exitosa
                 session_status_check();
-                
+                $_SESSION['id'] = $user->getId();
                 $_SESSION['nombre'] = $user->getNombre();
                 $_SESSION['apellido'] = $user->getApellido();
                 $_SESSION['email'] = $user->getEmail();
                 $_SESSION['genero'] = $user->getGenero();
                 $url_limpia = obtenerUrlLimpia();
                 header("Location: ".$url_limpia."/index.php");
+            }else{
+                
             }
 
         }else{

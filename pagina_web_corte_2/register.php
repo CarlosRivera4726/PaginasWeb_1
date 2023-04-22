@@ -42,7 +42,7 @@ echo '
 				header("Location: ".$url_limpia."/login.php");
 			} else {
 				$mostrar_error = true;
-				$message = "Error al registrar el usuario: Correo electronico en uso";
+				$message = "Error al registrar el usuario: Correo electronico en uso.".$result;
 			}
 		} else {
 			$mostrar_error = true;

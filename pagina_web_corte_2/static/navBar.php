@@ -22,7 +22,7 @@
 				<div class="container-li">
 					<li><a href="'.$url_limpia.'/index.php"><i class="icon-home"></i> Inicio</a></li>
 					<li><a href="'.$url_limpia.'/comprarCasas.php"><i class="icon-price"></i> Comprar Casas</a></li>
-					<li><a href="'.$url_limpia.'/VenderCasas.php"><i class="icon-sold"></i> Vender Casas</a></li>
+					<li><a href="'.$url_limpia.'/venderCasas.php"><i class="icon-sold"></i> Vender Casas</a></li>
 				';
 
   // Si el usuario ha iniciado sesión, muestra "Cerrar sesión" en lugar de "Ingresar" y "Registrarse"

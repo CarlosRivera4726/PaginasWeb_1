@@ -14,7 +14,7 @@
         session_status_check();
         
         if(isset($_SESSION['email'])){
-            echo "Bienvenido(a), " . $_SESSION['nombre'] . " " . $_SESSION['apellido'] . "!";
+            echo "Bienvenido(a), ".$_SESSION['id'] .") " .$_SESSION['nombre'] . " " . $_SESSION['apellido'] . "!";
         }else{
             echo "No estás logeado.";
         }
