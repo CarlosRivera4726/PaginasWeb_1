@@ -10,7 +10,8 @@
     <?php 
         include "static/navBar.php";
 
-        if(session_status() == PHP_SESSION_NONE) { session_start(); }
+        // funcion get
+        session_status_check();
         
         if(isset($_SESSION['email'])){
             echo "Bienvenido(a), " . $_SESSION['nombre'] . " " . $_SESSION['apellido'] . "!";

@@ -25,7 +25,8 @@
 
             if(($user != null) && password_verify($password, $passwordUser)){
                 // autenticacion exitosa
-                if(session_status() == PHP_SESSION_NONE){ session_start(); }
+                session_status_check();
+                
                 $_SESSION['nombre'] = $user->getNombre();
                 $_SESSION['apellido'] = $user->getApellido();
                 $_SESSION['email'] = $user->getEmail();

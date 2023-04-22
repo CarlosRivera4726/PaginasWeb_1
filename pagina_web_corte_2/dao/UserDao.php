@@ -8,24 +8,34 @@
         
 
         public function __construct($connection){ $this->connection = $connection; }
-
+        
         public function guardar($usuario) {
+            try {
+                $query = "INSERT INTO ".$this->table." (NOMBRE, APELLIDO, EMAIL, GENERO, CLAVE) VALUES (:nombre, :apellido, :email, :genero, :clave)";
+                $stmt = $this->connection->prepare($query);
+                
+                $nombre = $usuario->getNombre();
+                $stmt->bindParam(':nombre', $nombre);
 
-            $query = "INSERT INTO ".$this->table." (NOMBRE, APELLIDO, EMAIL, GENERO, CLAVE) VALUES (:nombre, :apellido, :email, :genero, :clave)";
-            $stmt = $this->connection->prepare($query);
-            $stmt->bindParam(':nombre', $usuario->getNombre());
-            $stmt->bindParam(':apellido', $usuario->getApellido());
-            $stmt->bindParam(':email', $usuario->getEmail());
-            $stmt->bindParam(':genero', $usuario->getGenero());
-            $stmt->bindParam(':clave', $usuario->getPassword());
-            $result = $stmt->execute();
+                $apellido = $usuario->getApellido();
+                $stmt->bindParam(':apellido', $apellido);
 
-            if($result){
-                return "Te has registrado con exito!";
-            }else{
-                return "No te has podido registrar correctamente!";
+                $email = $usuario->getEmail();
+                $stmt->bindParam(':email', $email);
+
+                $genero = $usuario->getGenero();
+                $stmt->bindParam(':genero', $genero);
+
+                $clave = $usuario->getPassword();
+                $stmt->bindParam(':clave', $clave);
+
+                $stmt->execute();
+                return true;
+            } catch(PDOException $ex) {
+                return $ex->getMessage();
             }
         }
+        
 
 
         public function login($email){

@@ -1,6 +1,6 @@
 <?php 
-  include "estilos.html";
-  include "funciones.php";
+  include_once "estilos.html";
+  require_once "funciones.php";
   
   $url_limpia = obtenerUrlLimpia();
 

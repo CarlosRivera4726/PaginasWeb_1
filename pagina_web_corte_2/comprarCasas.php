@@ -8,9 +8,11 @@
 </head>
 <body>
     <?php
-        if(session_status() == PHP_SESSION_NONE) { session_start(); }
-        include "database/connection.php";
-        include "static/navBar.php";
+        include_once "database/connection.php";
+        require_once "static/navBar.php";
+        
+        session_status_check();
+        
         if(isset($_SESSION['email'])){
             echo "Bienvenido(a), " . $_SESSION['nombre'] . " " . $_SESSION['apellido'] . "!";
         }else{
