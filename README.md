@@ -7,7 +7,11 @@ Al momento de este commit se tiene el registro en la base de datos de los usuari
 
 ### MYSQL 💼
 ~~~SQL  
-    DROP SCHEMA IF EXISTS venta_casas;
+[IMG]
+![Modelo_Pagina_web](https://user-images.githubusercontent.com/49885608/233751687-c103cec5-bde7-4a89-8b0e-a46e3d826280.png)
+[!IMG]
+
+DROP SCHEMA IF EXISTS venta_casas;
 CREATE SCHEMA IF NOT EXISTS venta_casas;
 USE VENTA_CASAS;
 DROP TABLE IF EXISTS USUARIO;
