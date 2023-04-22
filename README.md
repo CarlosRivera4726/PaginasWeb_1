@@ -7,88 +7,73 @@ Al momento de este commit se tiene el registro en la base de datos de los usuari
 
 ### MYSQL 💼
 ~~~SQL  
-    CREATE SCHEMA IF NOT EXISTS venta_casas;
-    DROP TABLE IF EXISTS USUARIOS;
-    CREATE TABLE IF NOT EXISTS USUARIOS(
-        ID INT AUTO_INCREMENT PRIMARY KEY,
-        NOMBRE VARCHAR(25) NOT NULL,
-        APELLIDO VARCHAR(25) NOT NULL,
-        EMAIL VARCHAR(55) NOT NULL UNIQUE,
-        GENERO VARCHAR(25) NOT NULL,
-        CLAVE VARCHAR(2000) NOT NULL
-    );
+    DROP SCHEMA IF EXISTS venta_casas;
+CREATE SCHEMA IF NOT EXISTS venta_casas;
+USE VENTA_CASAS;
+DROP TABLE IF EXISTS USUARIO;
 
-    INSERT INTO USUARIOS(NOMBRE, APELLIDO, EMAIL, GENERO, CLAVE) VALUES("usuario", "prueba", "mail.prueba@mail.COM", "masculino", "$2y$10$R4IJRK8ceXDV8xiZsa0gTeOr4TWfPDFlBsuL3mC/yKKQLqpphIgMa");
+CREATE TABLE USUARIO (
+  ID INT PRIMARY KEY AUTO_INCREMENT,
+  NOMBRE VARCHAR(50),
+  APELLIDO varchar(50),
+  EMAIL VARCHAR(100) UNIQUE,
+  GENERO VARCHAR(50),
+  CLAVE varchar(2000),
+  ES_VENDEDOR BOOLEAN DEFAULT FALSE
+);
+
+CREATE TABLE VENDEDOR (
+  ID INT PRIMARY KEY AUTO_INCREMENT,
+  ID_USUARIO INT,
+  NUMERO_CUENTA INT NOT NULL DEFAULT NULL,
+  FOREIGN KEY (ID_USUARIO) REFERENCES USUARIO(ID)
+);
+
+CREATE TABLE COMPRADOR (
+  ID INT PRIMARY KEY AUTO_INCREMENT,
+  ID_USUARIO INT,
+  METODO_PAGO VARCHAR(100) NOT NULL,
+  FOREIGN KEY (ID_USUARIO) REFERENCES USUARIO(ID)
+);
+
+CREATE TABLE TERRENO (
+  ID INT PRIMARY KEY AUTO_INCREMENT,
+  ID_VENDEDOR INT,
+  LOCALIZACION VARCHAR(100) NOT NULL,
+  DESCRIPCION VARCHAR(100) NOT NULL,
+  PRECIO DECIMAL(10,2) NOT NULL DEFAULT 0,
+  FOREIGN KEY (ID_VENDEDOR) REFERENCES VENDEDOR(ID)
+);
+
+CREATE TABLE COMPRA (
+  ID_COMPRA INT PRIMARY KEY AUTO_INCREMENT,
+  ID_COMPRADOR INT NOT NULL,
+  ID_TERRENO INT NOT NULL,
+  FECHA_COMPRA DATE NOT NULL,
+  FOREIGN KEY (ID_COMPRADOR) REFERENCES COMPRADOR(ID),
+  FOREIGN KEY (ID_TERRENO) REFERENCES TERRENO(ID)
+);
+
+INSERT INTO USUARIO(NOMBRE, APELLIDO, EMAIL, GENERO, CLAVE) VALUES("usuario", "prueba", "mail@mail.com", "masculino", "$2y$10$R4IJRK8ceXDV8xiZsa0gTeOr4TWfPDFlBsuL3mC/yKKQLqpphIgMa");
 
 
-    SELECT * FROM USUARIOS;
+SELECT * FROM USUARIO;
 ~~~ 
 ### PHP 🐘
 ~~~PHP
-    <?php
-	class User {
-		private $nombre;
-		private $apellido;
-		private $genero;
-		private $password;
-		private $email;
-		
-		public function __construct($nombre, $apellido, $email, $password, $genero,) {
-			$this->nombre = $nombre;
-			$this->apellido = $apellido;
-			$this->email = $email;
-			$this->password = $password;
-			$this->genero = $genero;
-		}
-		
-		public function getNombre(){
-			return $this->nombre;
-		}
-		
-		public function setNombre($nombre){
-			$this->nombre = $nombre;
-		}
-		
-		public function getApellido(){
-			return $this->apellido;
-		}
-		
-		public function setApellido($apellido){
-			$this->apellido = $apellido;
-		}
-		
-		public function getGenero(){
-			return $this->genero;
-		}
-		
-		public function setGenero($genero){
-			$this->genero = $genero;
-		}
-		
-		public function getPassword(){
-			return $this->password;
-		}
-		
-		public function setPassword($password){
-			$this->password = $password;
-		}
-		
-		public function getEmail(){
-			return $this->email;
-		}
-		
-		public function setEmail($email){
-			$this->email = $email;
-		}
-
-		public function toString(){
-			return $this->nombre . " " . $this->apellido;
-		}
-	}
-
-?>
+	UserModel.php
 ~~~
 
-#### Resto de la Logica
-El resto de la lógica se puede ver dentro del proyecto, lo importante como el sql está en esta parte puesto que es lo unico que no se sube en github
-a menos que se exporte la base de datos
+#### Todos Los archivos involucrados estan en pagina_web_corte_2
+El resto de la lógica se puede ver dentro del proyecto, lo importante como el sql está en esta parte puesto que es lo unico que no se sube en github, lo demás como configuracion de la base de datos se deja como ejemplo a continuacion
+En la misma carpeta de database, van a crear un archivo my_settings.ini con la siguiente estructura:
+### [my_settings.ini]
+~~~ini
+[database]
+driver = mysql
+host = localhost
+;port = 3306
+schema = venta_casas
+username = root
+password = 1234
+~~~
