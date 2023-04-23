@@ -33,6 +33,8 @@
                 return true;
             } catch(PDOException $ex) {
                 return $ex->getMessage();
+            } finally{
+                $this->closeConnection();
             }
         }
         
@@ -67,8 +69,11 @@
                 }
             }catch(Exception $ex){
                     return "El correo no se encuentra registrado!";
+            }finally{
+                $this->closeConnection();
             }
         }
+        private function closeConnection(){ $this->connection = null; }
     }
 
 ?>
