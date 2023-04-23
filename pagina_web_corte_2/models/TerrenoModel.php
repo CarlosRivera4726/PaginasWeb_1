@@ -59,5 +59,9 @@
         public function setPrecio($precio){
             $this->precio = $precio;
         }
+
+        public function __toString(){
+            return "ID: ".$this->id." Vendedor: ".$this->id_vendedor." Descripcion: ".$this->descripcion. " Precio: ".$this->precio;
+        }
     }
 ?>
