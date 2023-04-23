@@ -33,7 +33,7 @@
         
 
         public function __toString(){
-            return "ID: ". $this->id." id_usuario: ".$this->id_usuario." numero cuenta: ".$this->numero_cuenta;
+            return "ID: ". $this->id." id_usuario: ".$this->id_usuario." Número Cuenta: ".$this->numero_cuenta;
         }
     }
 ?>
