@@ -37,8 +37,6 @@
                 $this->closeConnection();
             }
         }
-        
-
 
         public function login($email){
             try{
