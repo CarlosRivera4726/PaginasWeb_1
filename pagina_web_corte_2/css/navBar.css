@@ -1,0 +1,114 @@
+* {
+        border: 0;
+        padding: 0;
+        margin: 0;
+    }
+
+    a {
+        text-decoration: none;
+        color: black;
+    }
+
+    .barra-navegacion {
+        width: 100%;
+        height: 80px;
+        background-color: wheat;
+        /* background-color: wheat; */
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .imagen {
+        display: flex;
+        height: 100%;
+        align-items: center;
+    }
+
+    .imagen>img {
+        margin: 0px 20px;
+        object-fit: cover;
+        width: 100%;
+        height: 60px;
+    }
+
+    /*CONTENEDOR DE BUSCAR*/
+
+    .contenedor_buscar {
+        width: 360px;
+        position: relative;
+    }
+
+    .input-barraBuscar {
+        border-radius: 10px;
+        width: 100%;
+        height: 15px;
+        display: block;
+        font-size: 15px;
+        padding: 10px 0px 10px 16px;
+        border: 1px solid grey;
+    }
+
+    .input-barraBuscar:focus {
+        outline: none;
+    }
+
+    .boton-barraBuscar {
+        border-radius: 10%;
+        position: absolute;
+        top: 0;
+        right: 3px;
+        width: 30px;
+        height: 100%;
+        cursor: pointer;
+        border: none;
+        background: none;
+    }
+
+    button i {
+        color: rgb(133, 133, 133);
+    }
+
+    button:hover i {
+        color: rgb(0, 0, 0);
+    }
+
+    /*LISTA DE LOS ENLACES*/
+
+    .container-li {
+        display: flex;
+        list-style: none;
+    }
+
+    .container-li>li {
+        margin: 0px 5px;
+        display: inline-block;
+    }
+
+    .container-li>li>a {
+        padding: 10px 10px;
+    }
+
+    .icon-home {
+        background-image: url(../imgs/icons_navbar/home.png);
+    }
+
+    .icon-price {
+        background-image: url(../imgs/icons_navbar/prices.png);
+    }
+
+    .icon-user {
+        background-image: url(../imgs/icons_navbar/login.png);
+    }
+
+    .icon-register {
+        background-image: url(../imgs/icons_navbar/add_user.png);
+    }
+
+    .icon-logout {
+        background-image: url(../imgs/icons_navbar/logout.png);
+    }
+
+    .icon-sold {
+        background-image: url(../imgs/icons_navbar/sold.png);
+    }

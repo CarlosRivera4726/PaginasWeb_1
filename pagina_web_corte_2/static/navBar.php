@@ -7,22 +7,22 @@
   $navBar = '
   	<header>
   
-	  <div class="container-nav">
-		
-		<nav>
-			<ul style="display: flex; align-items: center;">
-				<li><img class="welcome" src="imgs/casasLogo2.png"/> </li>
+	  <div class="barra-navegacion">
+		<div class="imagen">
+			<img class="welcome" src="imgs/casasLogo2.png"/> 
+		</div>
 
-				<form action="index.php" method="get">
-					<li style="text-align: center;">
-						<input type="text" placeholder="Buscar...">
-						<button type="submit">Buscar</button>
-					</li>
-				</form>
-				<div class="container-li">
-					<li><a href="'.$url_limpia.'/index.php"><i class="icon-home"></i> Inicio</a></li>
-					<li><a href="'.$url_limpia.'/comprarCasas.php"><i class="icon-price"></i> Comprar Casas</a></li>
-					<li><a href="'.$url_limpia.'/venderCasas.php"><i class="icon-sold"></i> Vender Casas</a></li>
+			<form class="contenedor_buscar" action="" method="get">
+				<input class="input-barraBuscar" type="text" name="buscar" placeholder="Buscar..." />
+				<button class="boton-barraBuscar" type="submit">
+					<i class="fa fa-search" aria-hidden="true"></i>
+				</button>
+			</form>
+			
+			<div class="container-li">
+				<li><a href="'.$url_limpia.'/index.php"><i class="icon-home"></i> Inicio</a></li>
+				<li><a href="'.$url_limpia.'/comprarCasas.php"><i class="icon-price"></i> Comprar Casas</a></li>
+				<li><a href="'.$url_limpia.'/venderCasas.php"><i class="icon-sold"></i> Vender Casas</a></li>
 				';
 
   // Si el usuario ha iniciado sesión, muestra "Cerrar sesión" en lugar de "Ingresar" y "Registrarse"
@@ -37,7 +37,6 @@
 
   $navBar .= '
   		</div>
-		</nav>
 	
 	  </div>
 	  
