@@ -12,6 +12,7 @@
     <?php
 
     require_once "static/navBar.php";
+    include "controllers/TerrenoController.php";
     include "controllers/VendedorController.php";
     // obtenida de funciones.php
     
@@ -19,24 +20,32 @@
 
     if (isset($_POST['enviar'])) {
         $vendedor = new Vendedor($_SESSION['id'], $_POST['numeroCuenta']);
+
         $vendedorController = new VendedorController();
-        $result = $vendedorController->guardar($vendedor);
-        if ($result === true) {
+        $terrenoController = new TerrenoController();
+
+        $result_vendedor = $vendedorController->guardar($vendedor);
+        $vendedor = $vendedorController->listar_vendedor($_SESSION['id']);
+        echo $vendedor->getId();
+        $terreno = new Terreno($vendedor->getId(), $_POST['localizacion'], $_POST['descripcion'], $_POST['precio']);
+
+        $result_terreno = $terrenoController->guardar($terreno);
+        if ($result_vendedor === true && $result_terreno === true) {
             echo '<div class="alert alert-success">Casa en venta con exito! </div>';
         } else {
-            echo '<div class="alert alert-danger">La casa no se ha podido vender! ' . $result . ' </div>';
+            echo '<div class="alert alert-danger">La casa no se ha podido vender! ' . $result_vendedor . ' </div>';
         }
     }
-    
+
     ?>
     <h1>Datos Casa</h1>
     <div class="container">
         <form action="venderCasas.php" method="post">
             <?php
-            if(isset($_SESSION['id'])){
-            
-            $form =
-                '
+            if (isset($_SESSION['id'])) {
+
+                $form =
+                    '
                     <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre:</label>
                         <input type="text" class="form-control" id="nombre" value="' . $_SESSION['nombre'] . '" required disabled>
@@ -50,9 +59,9 @@
                     <input type="text" class="form-control" id="apellido" value="' . (($_SESSION['es_vendedor'] == 1) ? "Sí" : "No") . '" required disabled>
                 </div>
                 ';
-            }else{
+            } else {
                 $form =
-                '
+                    '
                     <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre:</label>
                         <input type="text" class="form-control" id="nombre" value="Usuario" required disabled>
@@ -93,15 +102,14 @@
             </div>
             <div class="form-group mb-3">
                 <?php
-                    if(isset($_SESSION['email'])){
-                        $login = '<input class="btn btn-primary" type="submit" value="Enviar" name="enviar">';
-                        $cancel = '<a class="btn btn-danger" href="' . $url_limpia . '/index.php">Cancelar</a>';
-                    }
-                    else{
-                        echo '<a class="btn btn-info" href="' . $url_limpia . '/login.php">debes iniciar sesion primero</a>';
-                       
-                    }
-                    //echo '<a class="btn btn-danger" href="' . $url_limpia . '/index.php">Cancelar</a>';
+                if (isset($_SESSION['id'])) {
+                    echo '<input class="btn btn-primary" type="submit" value="Enviar" name="enviar">';
+                    echo '<a class="btn btn-danger" href="' . $url_limpia . '/index.php">Cancelar</a>';
+                } else {
+                    echo '<a class="btn btn-info" href="' . $url_limpia . '/login.php">debes iniciar sesion primero</a>';
+
+                }
+                //echo '<a class="btn btn-danger" href="' . $url_limpia . '/index.php">Cancelar</a>';
                 ?>
             </div>
         </form>

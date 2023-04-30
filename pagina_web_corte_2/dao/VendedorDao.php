@@ -41,6 +41,31 @@ class VendedorDao
             return $ex->getMessage();
         }
     }
+
+    public function listar_vendedor($id) {
+
+        try {
+            $query = "SELECT * FROM " . $this->table . " WHERE ID_USUARIO=:id";
+            $stmt = $this->connection->prepare($query);
+            $stmt->bindParam(':id', $id);
+            
+            $stmt->execute();
+            $resultSet = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if (count($resultSet) > 0) {
+                $vendedor = new Vendedor(
+                    $resultSet[0]['ID_USUARIO'],
+                    $resultSet[0]['NUMERO_CUENTA']
+                );
+                $vendedor->setId($resultSet[0]['ID']);
+
+                return $vendedor;
+            } else {
+                return null;
+            }
+        } catch (PDOException $ex) {
+            return $ex->getMessage();
+        }
+    }
 }
 
 ?>

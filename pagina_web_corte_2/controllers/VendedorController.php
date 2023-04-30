@@ -16,6 +16,11 @@ class VendedorController
     {
         return $this->vendedorDao->guardar($vendedor);
     }
+
+    public function listar_vendedor($id)
+    {
+        return $this->vendedorDao->listar_vendedor($id);
+    }
 }
 
 ?>
