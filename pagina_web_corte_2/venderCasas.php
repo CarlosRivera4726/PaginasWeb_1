@@ -27,12 +27,14 @@
             echo '<div class="alert alert-danger">La casa no se ha podido vender! ' . $result . ' </div>';
         }
     }
-    echo $_SESSION['id'];
+    
     ?>
     <h1>Datos Casa</h1>
     <div class="container">
         <form action="venderCasas.php" method="post">
             <?php
+            if(isset($_SESSION['id'])){
+            
             $form =
                 '
                     <div class="mb-3">
@@ -48,6 +50,23 @@
                     <input type="text" class="form-control" id="apellido" value="' . (($_SESSION['es_vendedor'] == 1) ? "Sí" : "No") . '" required disabled>
                 </div>
                 ';
+            }else{
+                $form =
+                '
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre:</label>
+                        <input type="text" class="form-control" id="nombre" value="Usuario" required disabled>
+                    </div>
+                    <div class="mb-3">
+                        <label for="apellido" class="form-label">Apellido:</label>
+                        <input type="text" class="form-control" id="apellido" value="Invitado" required disabled>
+                    </div>
+                    <div class="mb-3">
+                    <label for="apellido" class="form-label">Vendedor?:</label>
+                    <input type="text" class="form-control" id="apellido" value="NO" required disabled>
+                </div>
+                ';
+            }
             echo $form;
             ?>
             <div class="mb-3">
@@ -72,11 +91,17 @@
                 <textarea class="form-control" id="descripcion" name="descripcion" rows="3"
                     placeholder="Hermosa casa en el barrio de la esmeralda...4 piesas"></textarea>
             </div>
-
             <div class="form-group mb-3">
-                <input class="btn btn-primary" type="submit" value="Enviar" name="enviar">
                 <?php
-                echo '<a class="btn btn-danger" href="' . $url_limpia . '/index.php">Cancelar</a>';
+                    if(isset($_SESSION['email'])){
+                        $login = '<input class="btn btn-primary" type="submit" value="Enviar" name="enviar">';
+                        $cancel = '<a class="btn btn-danger" href="' . $url_limpia . '/index.php">Cancelar</a>';
+                    }
+                    else{
+                        echo '<a class="btn btn-info" href="' . $url_limpia . '/login.php">debes iniciar sesion primero</a>';
+                       
+                    }
+                    //echo '<a class="btn btn-danger" href="' . $url_limpia . '/index.php">Cancelar</a>';
                 ?>
             </div>
         </form>
