@@ -26,14 +26,13 @@
 
         $result_vendedor = $vendedorController->guardar($vendedor);
         $vendedor = $vendedorController->listar_vendedor($_SESSION['id']);
-        echo $vendedor->getId();
         $terreno = new Terreno($vendedor->getId(), $_POST['localizacion'], $_POST['descripcion'], $_POST['precio']);
 
         $result_terreno = $terrenoController->guardar($terreno);
         if ($result_vendedor === true && $result_terreno === true) {
-            echo '<div class="alert alert-success">Casa en venta con exito! </div>';
+            echo '<div class="container alert alert-success">Casa en venta con exito! </div>';
         } else {
-            echo '<div class="alert alert-danger">La casa no se ha podido vender! ' . $result_vendedor . ' </div>';
+            echo '<div class=" container alert alert-danger">La casa no se ha podido vender! ' . $result_vendedor . ' </div>';
         }
     }
 
