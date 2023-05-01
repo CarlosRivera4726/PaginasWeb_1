@@ -19,13 +19,32 @@
     session_status_check();
 
     if (isset($_POST['enviar'])) {
-        $vendedor = new Vendedor($_SESSION['id'], $_POST['numeroCuenta']);
-
         $vendedorController = new VendedorController();
         $terrenoController = new TerrenoController();
 
+        // Obtener el vendedor correspondiente al ID de sesión del usuario
+        $vendedor = $vendedorController->listar_vendedor_usuario($_SESSION['id']);
+        echo $vendedor;
+        // Si no existe el vendedor, crear uno nuevo con el ID de sesión del usuario
+        if ($vendedor === null) {
+            $vendedor = new Vendedor($_SESSION['id'], $_POST['numeroCuenta']);
+            
+            echo "es nulo: ".$vendedor;
+        }
+        // Si ya existe el vendedor, actualizar el numero de cuenta
+        else {
+
+            $vendedor->setNumeroCuenta($_POST['numeroCuenta']);
+            echo "no es nulo: ".$vendedor;
+        }
+
         $result_vendedor = $vendedorController->guardar($vendedor);
-        $vendedor = $vendedorController->listar_vendedor($_SESSION['id']);
+        if($result_vendedor == true){
+            $vendedorGuardado = $vendedorController->listar_ultimo_vendedor_id_usuario($_SESSION['id']);
+            $vendedor->setId($vendedorGuardado->getId());
+        }
+
+        // Ahora el objeto $vendedor tiene el ID actualizado si fue un vendedor existente, o el ID recién creado si era nuevo.
         $terreno = new Terreno($vendedor->getId(), $_POST['localizacion'], $_POST['descripcion'], $_POST['precio']);
 
         $result_terreno = $terrenoController->guardar($terreno);
@@ -35,6 +54,7 @@
             echo '<div class=" container alert alert-danger">La casa no se ha podido vender! ' . $result_vendedor . ' </div>';
         }
     }
+
 
     ?>
     <h1>Datos Casa</h1>

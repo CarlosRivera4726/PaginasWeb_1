@@ -17,6 +17,14 @@ class VendedorController
         return $this->vendedorDao->guardar($vendedor);
     }
 
+    public function listar_vendedor_usuario($id)
+    {
+        return $this->vendedorDao->listar_vendedor_usuario($id);
+    }
+    public function listar_ultimo_vendedor_id_usuario($id)
+    {
+        return $this->vendedorDao->listar_ultimo_vendedor_id_usuario($id);
+    }
     public function listar_vendedor($id)
     {
         return $this->vendedorDao->listar_vendedor($id);

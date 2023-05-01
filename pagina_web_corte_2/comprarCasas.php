@@ -21,7 +21,7 @@
     if (isset($_SESSION['email'])) {
         echo "<h1>Casas en venta</h1>";
         echo "<h5 style='text-align: center; color: rgb(245, 222, 179);'>Bienvenido(a), " . $_SESSION['nombre'] . " " . $_SESSION['apellido'] . "!</h5>";
-    
+
         $vendedorController = new VendedorController();
         $terrenoController = new TerrenoController();
         $usuarioController = new UserController();
@@ -31,13 +31,13 @@
             $result_vendedor = $vendedorController->listar_vendedor($terreno->getIdVendedor());
             $result_usuario = $usuarioController->listar_usuario($result_vendedor->getIdUsuario());
 
-            if ($result_vendedor && $result_usuario) {
+            if ($result_vendedor !== null && $result_usuario) {
                 echo
                     '
                     <div class="container">
                         <div class="card" style="width: 18rem;">
                             <div class="card-body">
-                                <h5 class="card-title"> Vendedor: ' . $result_usuario->getNombre() . ' ' . $result_usuario->getApellido() . '</h5>
+                                <h5 class="card-title"> Vendedor: ' . $result_usuario->getNombre() . ' ' . $result_usuario->getApellido() . ' Cuenta: ' . $result_vendedor->getNumeroCuenta() . '</h5>
                                 <h6 class="card-subtitle mb-2 text-body-secondary"> Localización: ' . $terreno->getLocalizacion() . '</h6>
                                 <p class="card-text"> Descripción: ' . $terreno->getDescripcion() . '</p>
                                 <a href="#" class="card-link">Card link</a>

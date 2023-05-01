@@ -31,7 +31,7 @@ class TerrenoDao
             $stmt->execute();
             return true;
         } catch (PDOException $ex) {
-            return $ex->getMessage();
+            return $ex->getMessage()."por";
         }
     }
 
