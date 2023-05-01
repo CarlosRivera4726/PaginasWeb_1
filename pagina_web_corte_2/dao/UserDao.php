@@ -82,8 +82,8 @@ class UserDao
             $stmt = $this->connection->prepare($query);
             $stmt->bindParam(':id', $id);
             if ($stmt->execute() !== false && $stmt->rowCount() > 0) {
-                
-                $_SESSION['es_vendedor']=1;
+
+                $_SESSION['es_vendedor'] = 1;
                 return true;
             } else {
                 return "El usuario no se actualizo con exito";
@@ -92,6 +92,36 @@ class UserDao
             return "El usuario no se encuentra registrado!";
         } finally {
             $this->closeConnection();
+        }
+    }
+
+    public function listar_usuario($id)
+    {
+        try {
+            $query = "SELECT * FROM " . $this->table . " WHERE ID=:id";
+            $stmt = $this->connection->prepare($query);
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+            $resultSet = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            if (count($resultSet) > 0) {
+                $usuario = new User(
+                    $resultSet[0]['NOMBRE'],
+                    $resultSet[0]['APELLIDO'],
+                    $resultSet[0]['EMAIL'],
+                    $resultSet[0]['CLAVE'],
+                    $resultSet[0]['GENERO']
+                );
+
+                $usuario->setId($resultSet[0]['ID']);
+                $usuario->setEsVendedor($resultSet[0]['ES_VENDEDOR']);
+
+                return $usuario;
+            } else {
+                return null;
+            }
+        } catch (PDOException $ex) {
+            return $ex->getMessage();
         }
     }
     private function closeConnection()

@@ -25,15 +25,15 @@ class VendedorDao
 
             $numeroCuenta = $vendedor->getNumeroCuenta();
             $stmt->bindParam(':numero_cuenta', $numeroCuenta);
-            if($_SESSION['es_vendedor'] == 1 && $stmt->execute() && $stmt->rowCount() > 0){
+            if ($_SESSION['es_vendedor'] == 1 && $stmt->execute() && $stmt->rowCount() > 0) {
                 return true;
-            }else{
+            } else {
                 $stmt->execute();
                 $usuarioController = new UserController();
                 $result = $usuarioController->actualizarEstado($vendedor->getIdUsuario());
-                if($result === true){
+                if ($result === true) {
                     return true;
-                }else{
+                } else {
                     return $result;
                 }
             }
@@ -42,14 +42,15 @@ class VendedorDao
         }
     }
 
-    public function listar_vendedor($id) {
-
+    public function listar_vendedor($id)
+    {
         try {
-            $query = "SELECT * FROM " . $this->table . " WHERE ID_USUARIO=:id";
+            $query = "SELECT * FROM " . $this->table . " WHERE ID = :id";
+
             $stmt = $this->connection->prepare($query);
             $stmt->bindParam(':id', $id);
-            
             $stmt->execute();
+
             $resultSet = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if (count($resultSet) > 0) {
                 $vendedor = new Vendedor(
@@ -57,13 +58,13 @@ class VendedorDao
                     $resultSet[0]['NUMERO_CUENTA']
                 );
                 $vendedor->setId($resultSet[0]['ID']);
-
                 return $vendedor;
             } else {
                 return null;
             }
         } catch (PDOException $ex) {
-            return $ex->getMessage();
+            echo "Error al ejecutar la consulta: " . $ex->getMessage();
+            return null;
         }
     }
 }

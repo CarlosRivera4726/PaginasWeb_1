@@ -13,5 +13,10 @@ class TerrenoController
     {
         return $this->terrenoDAO->guardar($terreno);
     }
+
+    public function listar_terrenos()
+    {
+        return $this->terrenoDAO->listar_terrenos();
+    }
 }
 ?>

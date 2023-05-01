@@ -34,6 +34,34 @@ class TerrenoDao
             return $ex->getMessage();
         }
     }
+
+    public function listar_terrenos()
+    {
+        try {
+            $query = "SELECT * FROM " . $this->table;
+            $stmt = $this->connection->prepare($query);
+            $stmt->execute();
+            $resultSet = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            if (count($resultSet) > 0) {
+                $terrenos = array();
+                foreach ($resultSet as $row) {
+                    $terreno = new Terreno(
+                        $row["ID_VENDEDOR"],
+                        $row["LOCALIZACION"],
+                        $row["DESCRIPCION"],
+                        $row["PRECIO"]
+                    );
+                    $terrenos[] = $terreno;
+                }
+                return $terrenos;
+            } else {
+                return "No se encontraron terrenos!";
+            }
+        } catch (PDOException $ex) {
+            return $ex->getMessage();
+        }
+    }
 }
 
 ?>

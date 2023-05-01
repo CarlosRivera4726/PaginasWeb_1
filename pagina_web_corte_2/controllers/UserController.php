@@ -26,6 +26,11 @@ class UserController
     {
         return $this->userDao->actualizarEstado($id);
     }
+
+    public function listar_usuario($id)
+    {
+        return $this->userDao->listar_usuario($id);
+    }
 }
 
 ?>
