@@ -30,25 +30,25 @@
         foreach ($result_terreno as $terreno) {
             $result_vendedor = $vendedorController->listar_vendedor($terreno->getIdVendedor());
             $result_usuario = $usuarioController->listar_usuario($result_vendedor->getIdUsuario());
-
-            if ($result_vendedor !== null && $result_usuario) {
-                echo
-                    '
+            if ($result_usuario->getId() != $_SESSION['id']) {
+                if ($result_vendedor !== null && $result_usuario) {
+                    echo
+                        '
                     <div class="container">
                         <div class="card" style="width: 18rem;">
                             <div class="card-body">
                                 <h5 class="card-title"> Vendedor: ' . $result_usuario->getNombre() . ' ' . $result_usuario->getApellido() . ' Cuenta: ' . $result_vendedor->getNumeroCuenta() . '</h5>
                                 <h6 class="card-subtitle mb-2 text-body-secondary"> Localización: ' . $terreno->getLocalizacion() . '</h6>
                                 <p class="card-text"> Descripción: ' . $terreno->getDescripcion() . '</p>
-                                <a href="#" class="card-link">Card link</a>
-                                <a href="#" class="card-link">Another link</a>
+                                <a href="#" class="card-link btn btn-success">Comprar Casa</a>
                             </div>
                         </div> 
                     </div>
                     <br>
             ';
-            } else {
-                // El objeto $result_vendedor o $result_usuario es nulo, hacer algo aquí
+                } else {
+                    // El objeto $result_vendedor o $result_usuario es nulo, hacer algo aquí
+                }
             }
         }
 
