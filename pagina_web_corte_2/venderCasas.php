@@ -62,22 +62,9 @@
         <form action="venderCasas.php" method="post">
             <?php
             if (isset($_SESSION['id'])) {
+                // si existe la sesion se ejecuta la funcion
+                $form = datos_recogidos();
 
-                $form =
-                    '
-                    <div class="mb-3">
-                        <label for="nombre" class="form-label">Nombre:</label>
-                        <input type="text" class="form-control" id="nombre" value="' . $_SESSION['nombre'] . '" required disabled>
-                    </div>
-                    <div class="mb-3">
-                        <label for="apellido" class="form-label">Apellido:</label>
-                        <input type="text" class="form-control" id="apellido" value="' . $_SESSION['apellido'] . '" required disabled>
-                    </div>
-                    <div class="mb-3">
-                    <label for="apellido" class="form-label">Vendedor?:</label>
-                    <input type="text" class="form-control" id="apellido" value="' . (($_SESSION['es_vendedor'] == 1) ? "Sí" : "No") . '" required disabled>
-                </div>
-                ';
             } else {
                 $form =
                     '

@@ -153,6 +153,14 @@ ul{
 	vertical-align:middle;
 	margin-bottom: 5px;
 }
+.home-profile{
+	display: inline-block;
+	width: 24px;
+	height: 24px;
+	background-image: url(../imgs/icons_navbar/home_profile.png);
+	vertical-align:middle;
+	margin-bottom: 5px;
+}
 
 .container{
 	width: 500px;
@@ -160,4 +168,12 @@ ul{
 
 .form-separator {
     margin-bottom: 4rem; 
+}
+
+.link{
+	color: #008CBA;
+}
+.link:hover{
+	color: #015672;
+	text-decoration: underline;
 }

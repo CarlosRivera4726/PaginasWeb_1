@@ -52,6 +52,7 @@ class TerrenoDao
                         $row["DESCRIPCION"],
                         $row["PRECIO"]
                     );
+                    $terreno->setId($row["ID"]);
                     $terrenos[] = $terreno;
                 }
                 return $terrenos;
