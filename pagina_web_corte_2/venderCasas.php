@@ -35,7 +35,7 @@
         else {
 
             $vendedor->setNumeroCuenta($_POST['numeroCuenta']);
-            echo "no es nulo: ".$vendedor;
+            //echo "no es nulo: ".$vendedor;
         }
 
         $result_vendedor = $vendedorController->guardar($vendedor);

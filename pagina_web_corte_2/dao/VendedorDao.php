@@ -119,6 +119,22 @@ class VendedorDao
             return null;
         }
     }
+
+    public function eliminar($id)
+    {
+        try {
+            $query = "DELETE FROM " . $this->table . " WHERE ID = :id";
+
+            $stmt = $this->connection->prepare($query);
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+
+            return "ok";
+        } catch (PDOException $ex) {
+            echo "Error al ejecutar la consulta: " . $ex->getMessage();
+            return null;
+        }
+    }
 }
 
 ?>

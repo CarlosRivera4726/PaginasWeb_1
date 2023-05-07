@@ -63,6 +63,18 @@ class TerrenoDao
             return $ex->getMessage();
         }
     }
+    public function eliminar($id)
+    {
+        try {
+            $query = "DELETE FROM " . $this->table . " WHERE ID=:id";
+            $stmt = $this->connection->prepare($query);
+            $stmt->bindParam(":id", $id);
+            $stmt->execute();
+            return "Eliminada";
+        } catch (PDOException $ex) {
+            return $ex->getMessage();
+        }
+    }
 }
 
 ?>

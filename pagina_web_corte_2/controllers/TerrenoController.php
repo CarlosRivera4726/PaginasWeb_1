@@ -18,5 +18,9 @@ class TerrenoController
     {
         return $this->terrenoDAO->listar_terrenos();
     }
+
+    public function eliminar($id){
+        return $this->terrenoDAO->eliminar($id);
+    }
 }
 ?>

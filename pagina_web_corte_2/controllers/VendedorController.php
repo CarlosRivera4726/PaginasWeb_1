@@ -29,6 +29,10 @@ class VendedorController
     {
         return $this->vendedorDao->listar_vendedor($id);
     }
+    public function eliminar($id)
+    {
+        return $this->vendedorDao->eliminar($id);
+    }
 }
 
 ?>

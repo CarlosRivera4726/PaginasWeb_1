@@ -5,12 +5,14 @@
         private $localizacion;
         private $descripcion;
         private $precio;
+        private $vendida;
 
         public function __construct($id_vendedor, $localizacion, $descripcion, $precio){
             $this->id_vendedor = $id_vendedor;
             $this->localizacion = $localizacion;
             $this->descripcion = $descripcion;
             $this->precio = $precio;
+            $this->vendida = false;
         }
 
 
@@ -58,6 +60,14 @@
         
         public function setPrecio($precio){
             $this->precio = $precio;
+        }
+        // getter and setter column Precio
+        public function getStatus(){
+            return $this->vendida;
+        }
+        
+        public function setStatus($vendida){
+            $this->vendida = $vendida;
         }
 
         public function __toString(){
